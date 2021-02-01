@@ -1,8 +1,5 @@
 package com.matheuspedro.cursomc.resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.matheuspedro.cursomc.domain.Categoria;
 import com.matheuspedro.cursomc.services.CategoriaService;
 
