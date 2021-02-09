@@ -1,8 +1,11 @@
 package com.matheuspedro.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.matheuspedro.cursomc.domain.Categoria;
+import com.matheuspedro.cursomc.dto.CategoriaDTO;
 import com.matheuspedro.cursomc.services.CategoriaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,13 @@ public class CategoriaResource {
 	public ResponseEntity<Void> delete( @PathVariable Integer id ) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
+	};
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = service.findAll();
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	};
 	
 }
